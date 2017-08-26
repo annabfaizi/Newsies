@@ -38,17 +38,15 @@ p{
 }
 
 #wrapper {
-  width: 960px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 0;
+  padding: 0px 30px 20px 30px;
   color: white;
   /* font-family: 'Dancing Script', cursive; */
-  /**/
   /*  font-family: 'Courgette', cursive;*/
-  /*  */
   font-family: 'Merienda', cursive;
-  text-align: center;
+  text-align: left;
 }
 #articles {
   padding-left: 20px;
@@ -75,6 +73,7 @@ p{
 
 h2 {
   color: white;
+  text-shadow: 1px 1px 2px #000000, 0 0 25px #ff4081, 0 0 5px #880e4f;
 }
 textarea, input {
   display: block;
