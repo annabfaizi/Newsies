@@ -1,0 +1,27 @@
+{
+  "name": "newsies",
+  "version": "1.0.0",
+  "description": "users can leave comments on news articles",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annabfaizi/Newsies.git"
+  },
+  "author": "Anna B Faizi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/annabfaizi/Newsies/issues"
+  },
+  "homepage": "https://github.com/annabfaizi/Newsies#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.11.7",
+    "request": "^2.81.0"
+  }
+}
