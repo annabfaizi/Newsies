@@ -46,38 +46,45 @@ db.once("open", function() {
 // ======
 
 // A GET request to scrape the echojs website
+// A GET request to scrape the echojs website
 app.get("/scrape", function(req, res) {
-    var website = "https://www.nytimes.com/topic/subject/art";
-    // First, we grab the body of the html with request
-    request(website, function(error, response, html) {
-      // Then, we load that into cheerio and save it to $ for a shorthand selector
-      var $ = cheerio.load(html);
-      // Now, we grab every h2 within an article tag, and do the following:
-      $("article.story.theme-story").each(function(i, element) {
-  
-        // Save an empty result object
-        var result = {};
+  var website = "https://www.nytimes.com/topic/subject/art";
 
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children(".headline").text();
-      result.body = $(this).children(".summary").text();
-      result.link = $(this).children(".story-link").attr("href");
+  console.log("scraping.....");
+  // First, we grab the body of the html with request
+  request(website, function(error, response, html) {
+    // Then, we load that into cheerio and save it to $ for a shorthand selector
+    var $ = cheerio.load(html);
+    // Now, we grab every h2 within an article tag, and do the following:
+    $(".story-body").each(function(i, element) {
 
-      // Using our Article model, create a new entry
-      // This effectively passes the result object to the entry (and the title and link)
-      var entry = new Article(result);
+      // Save an empty result object
+      var result = {};
 
-      // Now, save that entry to the db
-      entry.save(function(err, doc) {
-        // Log any errors
-        if (err) {
-          console.log(err);
-        }
-        // Or log the doc
-        else {
-          console.log(doc);
-        }
-      });
+      // console.log($(this).children(".headline").text());
+
+      console.log($(this).children(".story-link").children(".story-meta").children(".summary").text());
+
+    // Add the text and href of every link, and save them as properties of the result object
+    result.title = $(this).children(".story-link").children(".story-meta").children(".headline").text();
+    result.body = $(this).children(".story-link").children(".story-meta").children(".summary").text();
+    result.link = $(this).children(".story-link").attr("href");
+
+    // Using our Article model, create a new entry
+    // This effectively passes the result object to the entry (and the title and link)
+    var entry = new Article(result);
+
+    // Now, save that entry to the db
+    entry.save(function(err, doc) {
+      // Log any errors
+      if (err) {
+        console.log(err);
+      }
+      // Or log the doc
+      else {
+        console.log(doc);
+      }
+    });
 
     });
   });
