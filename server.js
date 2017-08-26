@@ -15,6 +15,7 @@ mongoose.Promise = Promise;
 
 // Initialize Express
 var app = express();
+var PORT = process.env.PORT || 8080;
 
 // Use morgan and body parser with our app
 app.use(logger("dev"));
@@ -52,7 +53,7 @@ app.get("/scrape", function(req, res) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
       var $ = cheerio.load(html);
       // Now, we grab every h2 within an article tag, and do the following:
-      $("article").each(function(i, element) {
+      $("article.story.theme-story").each(function(i, element) {
   
         // Save an empty result object
         var result = {};
@@ -151,6 +152,6 @@ app.post("/articles/:id", function(req, res) {
 
 
 // Listen on port 3000
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
+app.listen(PORT, function() {
+  console.log("App running on port " + PORT +"!");
 });
