@@ -26,8 +26,8 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/newsiesmongoose");
-// mongoose.connect("mongodb://heroku_9k1blgvf:10vohkmv0n7fe3piaq9adgnc36@ds163699.mlab.com:63699/heroku_9k1blgvf");
+// mongoose.connect("mongodb://localhost/newsiesmongoose");
+mongoose.connect("mongodb://heroku_9k1blgvf:10vohkmv0n7fe3piaq9adgnc36@ds163699.mlab.com:63699/heroku_9k1blgvf");
 var db = mongoose.connection;
 
 // Show any mongoose errors
@@ -52,7 +52,7 @@ app.get("/scrape", function(req, res) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
       var $ = cheerio.load(html);
       // Now, we grab every h2 within an article tag, and do the following:
-      $(".story").each(function(i, element) {
+      $("article").each(function(i, element) {
   
         // Save an empty result object
         var result = {};
